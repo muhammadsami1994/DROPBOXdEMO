@@ -1,17 +1,19 @@
 angular
-    .module('inputIconDemo', ['ngMaterial'])
+    .module('inputIconDemo', [])
     .controller('DemoCtrl', function($scope) {
-        var client = new Dropbox.Client({ key: 'nvhm0a8vj61h0tz' });
-
-        client.authenticate(function () {
-
-            client.writeFile('hello.txt', 'Hello, World!', function () {
-
-                alert('File written!');
-
-            });
+        $scope.ListArray = [];
+        $scope.button = Dropbox.createChooseButton({
+            success: function(files) {
+                $scope.ListArray.push(files[0].link)
+            },
+            linkType: 'direct',
+            extensions : ['.pdf', '.doc', '.docx','.png','.jpg']
         });
-
-
+        document.getElementById('container').appendChild($scope.button);
+        $scope.showList = function (){
+            for(i=0; i<$scope.ListArray.length;i++){
+                document.write($scope.ListArray[i])
+            }
+        }
     }
 );
