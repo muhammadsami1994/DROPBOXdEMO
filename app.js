@@ -7,12 +7,13 @@ angular
                 $scope.ListArray.push(files[0].link)
             },
             linkType: 'direct',
-            extensions : ['.pdf', '.doc', '.docx','.png','.jpg']
+            multiselect:true,
+            extensions : ['.pdf', '.doc', '.docx','.png','.jpg','.txt']
         });
         document.getElementById('container').appendChild($scope.button);
         $scope.showList = function (){
             for(i=0; i<$scope.ListArray.length;i++){
-                document.write($scope.ListArray[i])
+                alert($scope.ListArray[i])
             }
         }
     }
